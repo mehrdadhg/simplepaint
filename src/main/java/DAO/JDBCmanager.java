@@ -1,3 +1,11 @@
+package DAO;
+
+import model.Circle;
+import model.Line;
+import model.Rect;
+import model.Shape;
+import model.User;
+
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -5,10 +13,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class DBmanager {
+public class JDBCmanager {
 
     public static ArrayList<Shape> getShapes(User user) {
-        ArrayList<Shape> shapes = new ArrayList<Shape>();
+        ArrayList<model.Shape> shapes = new ArrayList<model.Shape>();
         try {
             Class.forName("com.mysql.jdbc.Driver").getInterfaces();
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/shapes", "root", "");
@@ -29,7 +37,7 @@ public class DBmanager {
         return shapes;
     }
 
-    public static void insertShapes(ArrayList<Shape> shapes, User user) {
+    public static void insertShapes(ArrayList<model.Shape> shapes, User user) {
         try {
             Class.forName("com.mysql.jdbc.Driver").getInterfaces();
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/shapes", "root", "");

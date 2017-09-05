@@ -1,3 +1,8 @@
+package view;
+
+import DAO.JDBCmanager;
+import model.Shape;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -24,17 +29,17 @@ public class ToolBox extends JPanel{
     public ToolBox(final MainFrame mainFrame){
         super();
         try {
-            Image img1 = ImageIO.read(getClass().getResource("/cursor.png"));
-            Image img2 = ImageIO.read(getClass().getResource("/colors.png"));
-            Image img3 = ImageIO.read(getClass().getResource("/circle.png"));
-            Image img4 = ImageIO.read(getClass().getResource("/line.png"));
-            Image img5 = ImageIO.read(getClass().getResource("/rectangle.png"));
-            Image img6 = ImageIO.read(getClass().getResource("/pencil.png"));
-            Image img7 = ImageIO.read(getClass().getResource("/eraser.png"));
-            Image img8 = ImageIO.read(getClass().getResource("/zoomin.png"));
-            Image img9 = ImageIO.read(getClass().getResource("/zoomout.png"));
-            Image img10 = ImageIO.read(getClass().getResource("/delete.png"));
-            Image img11 = ImageIO.read(getClass().getResource("/save.png"));
+            Image img1 = ImageIO.read(getClass().getResource("/img/cursor.png"));
+            Image img2 = ImageIO.read(getClass().getResource("/img/colors.png"));
+            Image img3 = ImageIO.read(getClass().getResource("/img/circle.png"));
+            Image img4 = ImageIO.read(getClass().getResource("/img/line.png"));
+            Image img5 = ImageIO.read(getClass().getResource("/img/rectangle.png"));
+            Image img6 = ImageIO.read(getClass().getResource("/img/pencil.png"));
+            Image img7 = ImageIO.read(getClass().getResource("/img/eraser.png"));
+            Image img8 = ImageIO.read(getClass().getResource("/img/zoomin.png"));
+            Image img9 = ImageIO.read(getClass().getResource("/img/zoomout.png"));
+            Image img10 = ImageIO.read(getClass().getResource("/img/delete.png"));
+            Image img11 = ImageIO.read(getClass().getResource("/img/save.png"));
             cursorBtn.setPreferredSize (new Dimension (60,60));
             cursorBtn.setIcon(new ImageIcon(img1));
             selectColorBtn.setPreferredSize (new Dimension (60,60));
@@ -81,7 +86,7 @@ public class ToolBox extends JPanel{
         lineBtn.addActionListener (new ActionListener(){
 
             public void actionPerformed (ActionEvent e) {
-                drawPanel.setToolType (Shape.line);
+                drawPanel.setToolType (model.Shape.line);
             }
         } );
 
@@ -93,13 +98,13 @@ public class ToolBox extends JPanel{
 
         rectBtn.addActionListener (new ActionListener(){
             public void actionPerformed (ActionEvent e) {
-                drawPanel.setToolType (Shape.rect);
+                drawPanel.setToolType (model.Shape.rect);
             }
         } );
 
         penBtn.addActionListener (new ActionListener(){
             public void actionPerformed (ActionEvent e) {
-                drawPanel.setToolType (Shape.pencil);
+                drawPanel.setToolType (model.Shape.pencil);
             }
         } );
 
@@ -142,7 +147,7 @@ public class ToolBox extends JPanel{
 
         saveBtn.addActionListener (new ActionListener () {
             public void actionPerformed (ActionEvent e) {
-                DBmanager.insertShapes (drawPanel.getShapes (),mainFrame.loginPanel.sysUser);
+                JDBCmanager.insertShapes (drawPanel.getShapes (),mainFrame.loginPanel.sysUser);
                 new LoginPanel ();
                 mainFrame.dispose();
 

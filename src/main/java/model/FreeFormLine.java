@@ -1,4 +1,5 @@
-import javax.persistence.Entity;
+package model;
+
 import java.awt.*;
 import java.util.ArrayList;
 

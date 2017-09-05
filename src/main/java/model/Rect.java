@@ -1,17 +1,18 @@
-import javax.persistence.Entity;
-import java.awt.*;
-import java.awt.geom.Line2D;
+package model;
 
-public class Line extends Shape{
- //   private int id;
+import java.awt.*;
+
+
+public class Rect extends Shape {
+   // private int id;
     private Point startPoint;
     private Point endPoint;
-    private Color color;
-    private String type;
     private int width;
     private int height;
+    private Color color;
+    private String type;
 
-    public Line ( Color color, String type,Point startPoint, Point endPoint) {
+    public Rect(Color color, String type,Point startPoint, Point endPoint ) {
         this.startPoint = startPoint;
         this.endPoint = endPoint;
         this.color = color;
@@ -19,24 +20,36 @@ public class Line extends Shape{
         width=Math.abs((endPoint.x - startPoint.x));
         height=Math.abs((endPoint.y - startPoint.y));//dimension
     }
-    public Line(){
-    }
-    public void draw(Graphics g){
-       // g.drawRect(startPoint.x, startPoint.y, (endPoint.x - startPoint.x), (endPoint.y - startPoint.y));
-        g.drawLine (startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+
+    public Rect() {
     }
 
-    public boolean contains(Point p){
-      /*  int dx = (int) Math.pow ((startPoint.x - endPoint.x), 2);
-        int dy =  (int) Math.pow ((startPoint.y - endPoint.y), 2);
-        int d =(int)  Math.sqrt (dx + dy);
-        double m1=   Math.tan(d);
-
-        return (p.y==(m1*(p.x-endPoint.x))+endPoint.y)||(p.y==(m1*(p.x-(endPoint.x+1)))+endPoint.y+1)||(p.y==(m1*(p.x-(endPoint.x-1)))+endPoint.y-1);*/
-
-        return new Line2D.Double(startPoint, endPoint).ptLineDist(p) <= 1;
+    public void draw(Graphics g) {
+        g.drawRect(Math.min(startPoint.x,endPoint.x),Math.min(startPoint.y,endPoint.y),width,height);
     }
-    public  void resize(double n){
+
+    public boolean contains(Point p) {
+
+        int y1, y2, x1, x2;
+        if (startPoint.y >= endPoint.y) {
+            y1 = startPoint.y;
+            y2 = endPoint.y;
+        } else {
+            y1 = endPoint.y;
+            y2 = startPoint.y;
+        }
+        if (startPoint.x >= endPoint.x) {
+            x1 = startPoint.x;
+            x2 = endPoint.x;
+        } else {
+            x1 = endPoint.x;
+            x2 = startPoint.x;
+        }
+
+        return (((p.x == endPoint.x || p.x == startPoint.x || p.x == endPoint.x - 1 || p.x == startPoint.x - 1 || p.x == endPoint.x + 1 || p.x == startPoint.x + 1) && p.y > y2 && p.y < y1) || ((p.y == endPoint.y || p.y == startPoint.y || p.y == endPoint.y - 1 || p.y == startPoint.y - 1 || p.y == endPoint.y + 1 || p.y == startPoint.y + 1) && p.x > x2 && p.x < x1));
+    }
+
+    public void resize(double n) {
         if(n<0){
             if(endPoint.x>startPoint.x && endPoint.y>startPoint.y) {
                 endPoint.x -= width * Math.abs(n);
@@ -66,41 +79,43 @@ public class Line extends Shape{
                 endPoint.y -= height * Math.abs(n);
             }
         }
+        width+=width*n;
+        height+=height*n;
     }
 
-    public Point getStartPoint () {
+    public Point getStartPoint() {
         return startPoint;
     }
 
-    public void setStartPoint (Point startPoint) {
+    public void setStartPoint(Point startPoint) {
         this.startPoint = startPoint;
     }
 
-    public Point getEndPoint () {
+    public Point getEndPoint() {
         return endPoint;
     }
 
-    public void setEndPoint (Point endPoint) {
+    public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
     }
 
-    public Color getColor () {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor (Color color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    public void setColor (int color) {
-        this.color=new Color (color);
+    public void setColor(int color) {
+        this.color = new Color(color);
     }
 
-    public String getType () {
+    public String getType() {
         return type;
     }
 
-    public void setType (String type) {
+    public void setType(String type) {
         this.type = type;
     }
 }

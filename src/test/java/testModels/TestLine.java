@@ -1,4 +1,6 @@
+package testModels;
 
+import model.Line;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -13,7 +15,7 @@ public class TestLine {
     @BeforeClass
     public static void startup(){
         line=new Line();
-        logger.info("object Line created");
+        logger.info("object model.Line created");
     }
     @Test
     public void testLine(){
@@ -21,7 +23,7 @@ public class TestLine {
         line.setEndPoint(new Point(200,100));
         Boolean b=line.contains(new Point(100,150));
         Assert.assertFalse(b);
-        logger.trace("test Line was"+b);
+        logger.trace("test model.Line was"+b);
     }
 
 }

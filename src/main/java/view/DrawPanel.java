@@ -1,3 +1,11 @@
+package view;
+
+import model.Circle;
+import model.FreeFormLine;
+import model.Line;
+import model.Rect;
+import model.Shape;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -10,11 +18,11 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
 
     private Point startPoint = null;
     private Point endPoint = null;
-    private ArrayList<Shape> shapes = new ArrayList<Shape>();
+    private ArrayList<model.Shape> shapes = new ArrayList<model.Shape>();
     private int index;
     private ArrayList<Point> currentPen = null;
 
-    private static String toolType = Shape.pencil;
+    private static String toolType = model.Shape.pencil;
     private static Color shapeColor = new Color(250, 250, 250);
 
 
@@ -36,7 +44,7 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
     public void mousePressed(MouseEvent e) {
         startPoint = e.getPoint();
 
-        if (toolType.equals(Shape.pencil)) {
+        if (toolType.equals(model.Shape.pencil)) {
             currentPen = new ArrayList<Point>();
             currentPen.add(e.getPoint());
             //repaint ();
@@ -87,7 +95,7 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
 
     public void mouseDragged(MouseEvent e) {
 
-        if (toolType.equals(Shape.pencil)) {
+        if (toolType.equals(model.Shape.pencil)) {
             currentPen.add(e.getPoint());
             repaint();
         }
@@ -102,13 +110,13 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
     public void mouseReleased(MouseEvent e) {
         endPoint = e.getPoint();
         index++;
-        if (toolType.equals(Shape.circle)) {
+        if (toolType.equals(model.Shape.circle)) {
             Circle circle = new Circle( shapeColor, toolType,startPoint, endPoint);
             shapes.add(circle);
-        } else if (toolType.equals(Shape.line)) {
+        } else if (toolType.equals(model.Shape.line)) {
             Line line = new Line(shapeColor, toolType,startPoint, endPoint);
             shapes.add(line);
-        } else if (toolType.equals(Shape.rect)) {
+        } else if (toolType.equals(model.Shape.rect)) {
             Rect rectangle = new Rect( shapeColor, toolType,startPoint, endPoint);
             shapes.add(rectangle);
         } else if (toolType.equals(Shape.pencil)) {
@@ -141,11 +149,11 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
         shapeColor = color;
     }
 
-    public ArrayList<Shape> getShapes() {
+    public ArrayList<model.Shape> getShapes() {
         return shapes;
     }
 
-    public void setShapes(ArrayList<Shape> DBshapes) {
+    public void setShapes(ArrayList<model.Shape> DBshapes) {
         shapes = DBshapes;
         index = DBshapes.size();
         repaint();
