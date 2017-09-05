@@ -11,11 +11,11 @@
 
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="User"></mapping>
-        <!--<mapping class="Circle"/>-->
-        <!--<mapping class="Line"/>-->
-        <!--<mapping class="Rect"/>-->
-        <mapping class="Shape"/>
+        <mapping class="model.User"></mapping>
+        <!--<mapping class="model.Circle"/>-->
+        <!--<mapping class="model.Line"/>-->
+        <!--<mapping class="model.Rect"/>-->
+        <mapping class="model.Shape"/>
         <mapping resource="user.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>
