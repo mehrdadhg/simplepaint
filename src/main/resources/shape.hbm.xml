@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="model.Shape" >
+        <id name="id" type="java.lang.Integer" >
+            <generator class="increment"/>
+        </id>
+        <!--<property name="color"  type="java.awt.Color"/>-->
+        <one-to-one name="color" class="java.awt.Color"
+                    cascade="all" lazy="false"/>
+        <property name="type"  type="java.lang.String"/>
+        <!--<property name="endPoint" type="java.awt.Point"/>-->
+        <one-to-one name="endPoint" class="java.awt.Point"
+                    cascade="all" lazy="false"/>
+        <!--<property name="startPoint" type="java.awt.Point"/>-->
+        <one-to-one name="startPoint" class="java.awt.Point"
+                    cascade="all" lazy="false"/>
+    </class>
+</hibernate-mapping>

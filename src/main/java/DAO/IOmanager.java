@@ -7,22 +7,45 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class IOmanager {
-    static SessionFactory factory = new Configuration().configure().buildSessionFactory();
+    private static SessionFactory factory ;
+    private static Session session;
+    private static Transaction transaction;
+
+    public static SessionFactory getFactory() {
+        return factory;
+    }
+
+    public static Session getSession() {
+        return session;
+    }
+
+    public static Transaction getTransaction() {
+        return transaction;
+    }
+
+    public static void open(){
+        try {
+            factory = new Configuration().configure().buildSessionFactory();
+            session = factory.openSession();
+            transaction=session.beginTransaction();
+        }catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+    }
 
     public static void addUser(User emp) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-
         try {
-            tx = session.beginTransaction();
             session.save(emp);
-            tx.commit();
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -30,15 +53,11 @@ public class IOmanager {
     }
 
     public static void editUser(User emp) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-
         try {
-            tx = session.beginTransaction();
             session.update(emp);
-            tx.commit();
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -46,68 +65,72 @@ public class IOmanager {
     }
 
     public static void deleteUser(User emp) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-
         try {
-            tx = session.beginTransaction();
             session.delete(emp);
-            tx.commit();
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
     }
 
-    public static void deleteUser(int tid) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-
+    public static  void deleteUser(int tid) {
         try {
-            tx = session.beginTransaction();
             //session.createQuery("delete from model.User where id=:uid").setParameter("uid",tid).executeUpdate();
             session.delete(session.get(User.class, tid));
-            tx.commit();
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
     }
 
-    public static ArrayList<Shape> getShapes(User user) {
-        return new ArrayList<Shape>();
-    }
-
-    public static void insertShapes(ArrayList<Shape> shapes, User user) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-
+    public static  List getShapes(int userID) {
+        List list=null;
         try {
-            tx = session.beginTransaction();
-            //   session.save();
-            tx.commit();
+            open();
+            //user = session.get(User.class, id);
+            Query query= session.createQuery("from model.Shape where userID='" + userID + "'");
+             list=query.list();
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
+
+    public static void insertShapes(ArrayList<Shape> shapes) {
+        try {
+            for (Shape shape:shapes) {
+                session.save(shape);
+            }
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
         }
     }
 
-    public static User isExist(String uName) {
-        Session session = factory.openSession();
-        Transaction tx = null;
+    public static   User getUser(String uName) {
         User user = null;
         try {
-            tx = session.beginTransaction();
-            user = session.get(User.class, uName);
-            tx.commit();
+            open();
+            //user = session.get(User.class, id);
+            Query query= session.createQuery("from model.User where uName='" + uName + "'");
+           List list=query.list();
+           user=(User) list.get(0);
+            transaction.commit();
         } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
+            if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
             session.close();
@@ -115,22 +138,6 @@ public class IOmanager {
         return user;
     }
 
-    public static User getUser(String uName) {
-        Session session = factory.openSession();
-        Transaction tx = null;
-        User user = null;
-        try {
-            tx = session.beginTransaction();
-            user = session.get(User.class, uName);
-            tx.commit();
-        } catch (HibernateException e) {
-            if (tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-        return user;
-    }
 }
 
 

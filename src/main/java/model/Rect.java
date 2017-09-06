@@ -4,7 +4,7 @@ import java.awt.*;
 
 
 public class Rect extends Shape {
-   // private int id;
+    private int id;
     private Point startPoint;
     private Point endPoint;
     private int width;
@@ -22,6 +22,16 @@ public class Rect extends Shape {
     }
 
     public Rect() {
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void draw(Graphics g) {

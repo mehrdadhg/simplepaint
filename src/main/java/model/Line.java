@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 
 public class Line extends Shape{
- //   private int id;
+    private int id;
     private Point startPoint;
     private Point endPoint;
     private Color color;
@@ -22,6 +22,17 @@ public class Line extends Shape{
     }
     public Line(){
     }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void draw(Graphics g){
        // g.drawRect(startPoint.x, startPoint.y, (endPoint.x - startPoint.x), (endPoint.y - startPoint.y));
         g.drawLine (startPoint.x, startPoint.y, endPoint.x, endPoint.y);

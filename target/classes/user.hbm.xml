@@ -4,11 +4,15 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="User" >
+    <class name="model.User" >
         <id name="id" type="int" >
             <generator class="increment"/>
         </id>
         <property name="uName"  type="string"/>
         <property name="password"  type="string"/>
+        <set name="shapes"  cascade="all" lazy="false" >
+            <key column="userID" />
+            <one-to-many class="model.Shape"/>
+        </set>
     </class>
 </hibernate-mapping>

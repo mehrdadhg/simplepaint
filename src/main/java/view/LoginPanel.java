@@ -26,6 +26,7 @@ public class LoginPanel extends JFrame{
     private JCheckBox showPasswordCheckBox=new JCheckBox ("show password",true);
     public User sysUser;
 
+
     public LoginPanel(){
         final LoginPanel loginPanel=this;
         this.setBounds (330,100,width,height);
@@ -54,7 +55,8 @@ public class LoginPanel extends JFrame{
                 if (uNameTextField.getText ().trim ().equals ("") || passwordField.getText ().trim ().equals (""))
                     JOptionPane.showMessageDialog (null, "username and password field must be filled");
                 else {
-                    if(IOmanager.isExist (uNameTextField.getText ())!=null) {
+                    IOmanager.open();
+                    if(IOmanager.getUser (uNameTextField.getText ())!=null) {
                         IOmanager.addUser (new User (uNameTextField.getText (),passwordField.getText ()));
                         JOptionPane.showMessageDialog (null,"registered successfully");
                     }
@@ -77,6 +79,7 @@ public class LoginPanel extends JFrame{
                 if (uNameTextField.getText ().trim ().equals ("") || passwordField.getText ().trim ().equals (""))
                     JOptionPane.showMessageDialog (null, "username and password field must be filled");
                 else {
+                    IOmanager.open();
                     if(IOmanager.getUser (uNameTextField.getText ())!=null) {
                         JOptionPane.showMessageDialog (null, "you're login successfully");
                         sysUser=IOmanager.getUser (uNameTextField.getText ());

@@ -10,5 +10,9 @@
         </id>
         <property name="uName"  type="string"/>
         <property name="password"  type="string"/>
+        <set name="shapes"  cascade="all" lazy="false" >
+            <key column="userID" />
+            <one-to-many class="model.Shape"/>
+        </set>
     </class>
 </hibernate-mapping>

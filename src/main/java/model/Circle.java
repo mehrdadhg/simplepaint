@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class Circle extends Shape {
 
-   // private int id;
+    private int id;
     private Point startPoint;
     private Point endPoint;
     private int radius;
@@ -23,6 +23,16 @@ public class Circle extends Shape {
         radius = (int) Math.sqrt (dx + dy);
     }
     public Circle(){}
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void draw (Graphics g) {
         g.drawOval (startPoint.x - radius, startPoint.y - radius, 2 * radius, 2 * radius);

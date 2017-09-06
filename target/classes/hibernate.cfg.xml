@@ -4,18 +4,17 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost/shapes</property>
+        <property name="connection.url">jdbc:mysql://localhost/paintdb</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.username">root</property>
         <property name="connection.password"></property>
 
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
-        <mapping class="User"></mapping>
-        <!--<mapping class="Circle"/>-->
-        <!--<mapping class="Line"/>-->
-        <!--<mapping class="Rect"/>-->
-        <mapping class="Shape"/>
         <mapping resource="user.hbm.xml"></mapping>
+        <mapping resource="shape.hbm.xml"></mapping>
+        <mapping resource="line.hbm.xml"></mapping>
+        <mapping resource="circle.hbm.xml"></mapping>
+        <mapping resource="rect.hbm.xml"></mapping>
     </session-factory>
 </hibernate-configuration>

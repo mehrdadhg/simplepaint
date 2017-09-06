@@ -5,8 +5,7 @@ import javax.persistence.Entity;
 import java.awt.*;
 import java.util.ArrayList;
 
-@Entity
-public abstract class Shape {
+public  class Shape {
     public static final String line="line";
     public static final String circle="circle";
     public static final String rect="rect";
@@ -16,7 +15,7 @@ public abstract class Shape {
     private String type;
     private Point startPoint;
     private Point endPoint;
-    private ArrayList<Point> freeLine = new ArrayList<Point> ();
+
 
     public Shape () {
     }
@@ -31,24 +30,44 @@ public abstract class Shape {
     public Shape(ArrayList<Point> freeLine,String type,Color color){
         this.color = color;
         this.type = type;
-        this.freeLine=freeLine;
+
     }
 
-    public abstract void resize(double n);
-    public abstract void draw(Graphics g);
+    public int getId() {
+        return id;
+    }
 
-    public abstract boolean contains(Point p);
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public abstract Point getStartPoint() ;
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public abstract Point getEndPoint() ;
+    public void setStartPoint(Point startPoint) {
+        this.startPoint = startPoint;
+    }
 
-    public abstract Color getColor ();
+    public void setEndPoint(Point endPoint) {
+        this.endPoint = endPoint;
+    }
 
-    public abstract void setColor(Color color);
-    public abstract void setColor(int color);
+    public  void resize(double n){}
+    public  void draw(Graphics g){}
 
-    public abstract String getType ();
+    public  boolean contains(Point p){return true;}
+
+    public  Point getStartPoint() {return new Point();}
+
+    public  Point getEndPoint() {return new Point();}
+
+    public  Color getColor (){return new Color(999);}
+
+    public  void setColor(Color color){}
+    public  void setColor(int color){}
+
+    public  String getType (){return "";}
 
 
 }

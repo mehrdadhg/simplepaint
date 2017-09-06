@@ -1,0 +1,5 @@
+testModels\TestCircle.class
+testDAO\testDataBase.class
+testModels\TestLine.class
+testModels\TestRect.class
+testModels\TestShapesSuite.class
