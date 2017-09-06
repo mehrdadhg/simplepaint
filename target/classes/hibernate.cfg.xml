@@ -12,7 +12,6 @@
         <!-- DB schema will be updated if needed -->
         <property name="hbm2ddl.auto">update</property>
         <mapping resource="user.hbm.xml"></mapping>
-        <mapping resource="shape.hbm.xml"></mapping>
         <mapping resource="line.hbm.xml"></mapping>
         <mapping resource="circle.hbm.xml"></mapping>
         <mapping resource="rect.hbm.xml"></mapping>

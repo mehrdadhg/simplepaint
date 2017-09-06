@@ -24,11 +24,11 @@ public class JDBCmanager {
             ResultSet rs = stmt.executeQuery("SELECT * FROM shapes where user_id=" + user.getId() + ";");
             while (rs.next()) {
                 if (rs.getString("type").equals("line"))
-                    shapes.add(new Line(new Color(rs.getInt("rgb")), rs.getString("type"), new Point(rs.getInt("x1"), rs.getInt("y1")), new Point(rs.getInt("x2"), rs.getInt("y2"))));
+                    shapes.add(new Line(rs.getInt("rgb"), rs.getString("type"), rs.getInt("x1"), rs.getInt("x2"),  rs.getInt("y1"),rs.getInt("y2")));
                 if (rs.getString("type").equals("rect"))
-                    shapes.add(new Rect(new Color(rs.getInt("rgb")), rs.getString("type"), new Point(rs.getInt("x1"), rs.getInt("y1")), new Point(rs.getInt("x2"), rs.getInt("y2"))));
+                    shapes.add(new Rect(rs.getInt("rgb"), rs.getString("type"), rs.getInt("x1"), rs.getInt("x2"),  rs.getInt("y1"),rs.getInt("y2")));
                 if (rs.getString("type").equals("circle"))
-                    shapes.add(new Circle(new Color(rs.getInt("rgb")), rs.getString("type"), new Point(rs.getInt("x1"), rs.getInt("y1")), new Point(rs.getInt("x2"), rs.getInt("y2"))));
+                    shapes.add(new Circle(rs.getInt("rgb"), rs.getString("type"), rs.getInt("x1"), rs.getInt("x2"),  rs.getInt("y1"),rs.getInt("y2")));
             }
 
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class JDBCmanager {
                 stmt.executeUpdate("truncate shapes");
             else {
                 for (int i = 0; i < shapes.size(); i++) {
-                    stmt.executeUpdate("insert into shapes(x1,y1,x2,y2,type,rgb,user_id) values (" + shapes.get(i).getStartPoint().x + "," + shapes.get(i).getStartPoint().y + "," + shapes.get(i).getEndPoint().x + "," + shapes.get(i).getEndPoint().y + ",'" + shapes.get(i).getType() + "'," + shapes.get(i).getColor().getRGB() + "," + user.getId() + ");");
+                    stmt.executeUpdate("insert into shapes(x1,y1,x2,y2,type,rgb,user_id) values (" + shapes.get(i).getStartPoint().x + "," + shapes.get(i).getStartPoint().y + "," + shapes.get(i).getEndPoint().x + "," + shapes.get(i).getEndPoint().y + ",'" + shapes.get(i).getType() + "'," + shapes.get(i).getRgb() + "," + user.getId() + ");");
                 }
             }
         } catch (Exception e) {

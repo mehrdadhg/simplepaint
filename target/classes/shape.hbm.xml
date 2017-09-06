@@ -8,15 +8,11 @@
         <id name="id" type="java.lang.Integer" >
             <generator class="increment"/>
         </id>
-        <!--<property name="color"  type="java.awt.Color"/>-->
-        <one-to-one name="color" class="java.awt.Color"
-                    cascade="all" lazy="false"/>
-        <property name="type"  type="java.lang.String"/>
-        <!--<property name="endPoint" type="java.awt.Point"/>-->
-        <one-to-one name="endPoint" class="java.awt.Point"
-                    cascade="all" lazy="false"/>
-        <!--<property name="startPoint" type="java.awt.Point"/>-->
-        <one-to-one name="startPoint" class="java.awt.Point"
-                    cascade="all" lazy="false"/>
+        <property name="rgb" type="java.lang.Integer"/>
+        <property name="type" type="java.lang.String"/>
+        <property name="x1" type="java.lang.Integer"/>
+        <property name="x2" type="java.lang.Integer"/>
+        <property name="y1" type="java.lang.Integer"/>
+        <property name="y2" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

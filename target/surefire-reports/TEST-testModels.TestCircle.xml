@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="1" name="testModels.TestCircle" time="0.081" errors="0" skipped="0">
+<testsuite tests="1" failures="1" name="testModels.TestCircle" time="0.043" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2017.2"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -62,7 +62,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="testModels.TestCircle" name="testCircle" time="0.081">
+  <testcase classname="testModels.TestCircle" name="testCircle" time="0.043">
     <failure type="java.lang.AssertionError">java.lang.AssertionError
 	at testModels.TestCircle.testCircle(TestCircle.java:31)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

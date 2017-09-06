@@ -53,7 +53,7 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
             if (shapes.size() > 0) {
                 for (int i = 0; i < shapes.size(); i++) {
                     if ((shapes.get(i)).contains(e.getPoint())) {
-                        shapes.get (i).setColor (shapeColor);
+                        shapes.get (i).setRgb (shapeColor.getRGB());
                         repaint();
                     }
                 }
@@ -111,13 +111,13 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
         endPoint = e.getPoint();
         index++;
         if (toolType.equals(model.Shape.circle)) {
-            Circle circle = new Circle( shapeColor, toolType,startPoint, endPoint);
+            Circle circle = new Circle( shapeColor.getRGB(), toolType,startPoint.x, endPoint.x,startPoint.y,endPoint.y);
             shapes.add(circle);
         } else if (toolType.equals(model.Shape.line)) {
-            Line line = new Line(shapeColor, toolType,startPoint, endPoint);
+            Line line = new Line(shapeColor.getRGB(), toolType,startPoint.x, endPoint.x,startPoint.y,endPoint.y);
             shapes.add(line);
         } else if (toolType.equals(model.Shape.rect)) {
-            Rect rectangle = new Rect( shapeColor, toolType,startPoint, endPoint);
+            Rect rectangle = new Rect( shapeColor.getRGB(), toolType,startPoint.x, endPoint.x,startPoint.y,endPoint.y);
             shapes.add(rectangle);
         } else if (toolType.equals(Shape.pencil)) {
             currentPen.add(e.getPoint());
@@ -174,7 +174,7 @@ public class DrawPanel extends JComponent implements MouseListener, MouseMotionL
             if (!shapes.isEmpty()) {
                 for (int i = 0; i < shapes.size(); i++) {
 
-                    g2d.setColor(shapes.get(i).getColor());
+                    g2d.setColor(new Color( shapes.get(i).getRgb()));
                     g2d.setStroke(new BasicStroke(3));
                     shapes.get(i).draw(g);
                 }

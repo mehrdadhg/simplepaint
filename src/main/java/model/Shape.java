@@ -5,32 +5,40 @@ import javax.persistence.Entity;
 import java.awt.*;
 import java.util.ArrayList;
 
-public  class Shape {
+public abstract   class Shape {
     public static final String line="line";
     public static final String circle="circle";
     public static final String rect="rect";
     public static final String pencil="pencil";
     private int id;
-    private Color color;
+    private int rgb;
     private String type;
-    private Point startPoint;
-    private Point endPoint;
+    private int x1;
+    private int x2;
+    private int y1;
+    private int y2;
 
 
     public Shape () {
     }
 
-    public Shape (Color color, String type, Point startPoint, Point endPoint) {
-        this.color = color;
+    public Shape(int rgb, String type, int x1, int x2, int y1, int y2) {
+        this.rgb = rgb;
         this.type = type;
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
     }
 
-    public Shape(ArrayList<Point> freeLine,String type,Color color){
-        this.color = color;
+    public Shape(int id, int rgb, String type, int x1, int x2, int y1, int y2) {
+        this.id = id;
+        this.rgb = rgb;
         this.type = type;
-
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
     }
 
     public int getId() {
@@ -45,29 +53,56 @@ public  class Shape {
         this.type = type;
     }
 
-    public void setStartPoint(Point startPoint) {
-        this.startPoint = startPoint;
+    public int getX1() {
+        return x1;
     }
 
-    public void setEndPoint(Point endPoint) {
-        this.endPoint = endPoint;
+    public void setX1(int x1) {
+        this.x1 = x1;
+    }
+
+    public int getX2() {
+        return x2;
+    }
+
+    public void setX2(int x2) {
+        this.x2 = x2;
+    }
+
+    public int getY1() {
+        return y1;
+    }
+
+    public void setY1(int y1) {
+        this.y1 = y1;
+    }
+
+    public int getY2() {
+        return y2;
+    }
+
+    public void setY2(int y2) {
+        this.y2 = y2;
     }
 
     public  void resize(double n){}
     public  void draw(Graphics g){}
 
-    public  boolean contains(Point p){return true;}
+    public abstract   boolean contains(Point p);
 
-    public  Point getStartPoint() {return new Point();}
+    public abstract   Point getStartPoint() ;
 
-    public  Point getEndPoint() {return new Point();}
+    public abstract   Point getEndPoint() ;
 
-    public  Color getColor (){return new Color(999);}
+    public int getRgb() {
+        return rgb;
+    }
 
-    public  void setColor(Color color){}
-    public  void setColor(int color){}
+    public void setRgb(int rgb) {
+        this.rgb = rgb;
+    }
 
-    public  String getType (){return "";}
-
-
+    public String getType() {
+        return type;
+    }
 }

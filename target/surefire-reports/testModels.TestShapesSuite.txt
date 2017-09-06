@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: testModels.TestShapesSuite
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.001 sec <<< FAILURE!
 initializationError(model.Circle)  Time elapsed: 0.001 sec  <<< ERROR!
 java.lang.IllegalArgumentException: Test class can only have one constructor
 	at org.junit.runners.model.TestClass.<init>(TestClass.java:40)

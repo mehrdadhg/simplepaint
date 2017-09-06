@@ -10,9 +10,17 @@
         </id>
         <property name="uName"  type="string"/>
         <property name="password"  type="string"/>
-        <set name="shapes"  cascade="all" lazy="false" >
+        <set name="lines"  cascade="all" lazy="false" >
             <key column="userID" />
-            <one-to-many class="model.Shape"/>
+            <one-to-many class="model.Line"/>
+        </set>
+        <set name="rects"  cascade="all" lazy="false" >
+            <key column="userID" />
+            <one-to-many class="model.Rect"/>
+        </set>
+        <set name="circles"  cascade="all" lazy="false" >
+            <key column="userID" />
+            <one-to-many class="model.Circle"/>
         </set>
     </class>
 </hibernate-mapping>

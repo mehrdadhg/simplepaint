@@ -2,9 +2,8 @@ package testDAO;
 
 import static DAO.IOmanager.*;
 
-import model.Line;
+import model.*;
 import model.Shape;
-import model.User;
 import org.dom4j.io.SAXContentHandler;
 import org.junit.*;
 import org.junit.Assert.*;
@@ -37,9 +36,20 @@ public class testDataBase {
     @Test
     public void  testInsertShape() throws Exception{
         ArrayList<Shape> shapes=new ArrayList<Shape>();
-        Line line= new Line(new Color(244),"Line",new Point(100,100),new Point(200,200));
+        Shape line= new Line(88,"Line",100,100,200,200);
+        Shape circle=new Circle(999,"circle",99,99,999,999);
+        Shape rect=new Rect(77,"rect",333,33,33,33);
         shapes.add(line);
+        shapes.add(circle);
+        shapes.add(rect);
         insertShapes(shapes);
+    }
+
+    @Test
+    public void testGetShapes(){
+        ArrayList<Object> shapes;
+        shapes= getShapes(1);
+        //Assert.assertEquals(shapes.get(0).getType(),"Line");
     }
     @After
     public void tearDown() {

@@ -10,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class IOmanager {
@@ -89,13 +90,22 @@ public class IOmanager {
         }
     }
 
-    public static  List getShapes(int userID) {
+    public static  ArrayList<Object> getShapes(int userID) {
         List list=null;
+        ArrayList<Object> objects=new ArrayList<Object>();
+        ArrayList<Shape> shapes=new ArrayList<Shape>();
         try {
             open();
             //user = session.get(User.class, id);
-            Query query= session.createQuery("from model.Shape where userID='" + userID + "'");
-             list=query.list();
+            Query query= session.createQuery("from model.Line where userID='" + userID + "'");
+            list=query.list();
+            query= session.createQuery("from model.Circle where userID='" + userID + "'");
+            list.add(query.list());
+             query= session.createQuery("from model.Rect where userID='" + userID + "'");
+            list.add(query.list());
+            for (int i = 0; i <list.size() ; i++) {
+                objects.add(list.get(i));
+            }
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
@@ -103,7 +113,7 @@ public class IOmanager {
         } finally {
             session.close();
         }
-        return list;
+        return objects;
     }
 
     public static void insertShapes(ArrayList<Shape> shapes) {

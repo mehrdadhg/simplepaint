@@ -6,7 +6,9 @@ public class User {
     private int id;
     private String uName;
     private String password;
-    private Set<Shape> shapes;
+    private Set<Line> lines;
+    private Set<Rect> rects;
+    private Set<Circle> circles;
 
     public User(){}
     public User (int id, String uName, String password) {
@@ -20,12 +22,28 @@ public class User {
         this.password = password;
     }
 
-    public Set<Shape> getShapes() {
-        return shapes;
+    public Set<Line> getLines() {
+        return lines;
     }
 
-    public void setShapes(Set<Shape> shapes) {
-        this.shapes = shapes;
+    public void setLines(Set<Line> lines) {
+        this.lines = lines;
+    }
+
+    public Set<Rect> getRects() {
+        return rects;
+    }
+
+    public void setRects(Set<Rect> rects) {
+        this.rects = rects;
+    }
+
+    public Set<Circle> getCircles() {
+        return circles;
+    }
+
+    public void setCircles(Set<Circle> circles) {
+        this.circles = circles;
     }
 
     public int getId () {
