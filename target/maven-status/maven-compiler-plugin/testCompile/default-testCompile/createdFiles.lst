@@ -1,5 +1,6 @@
-testModels\TestCircle.class
 testDAO\testDataBase.class
+testLogic\testEncryption.class
 testModels\TestLine.class
-testModels\TestRect.class
 testModels\TestShapesSuite.class
+testModels\TestCircle.class
+testModels\TestRect.class

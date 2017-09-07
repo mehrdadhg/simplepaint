@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: testModels.TestCircle
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.741 sec <<< FAILURE!
-testCircle(testModels.TestCircle)  Time elapsed: 0.043 sec  <<< FAILURE!
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.887 sec <<< FAILURE!
+testCircle(testModels.TestCircle)  Time elapsed: 0.062 sec  <<< FAILURE!
 java.lang.AssertionError
 	at testModels.TestCircle.testCircle(TestCircle.java:31)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)

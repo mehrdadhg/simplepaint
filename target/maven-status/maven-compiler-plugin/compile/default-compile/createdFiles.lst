@@ -5,6 +5,7 @@ view\ToolBox$6.class
 view\ToolBox$9.class
 model\FreeFormLine.class
 view\DrawPanel.class
+logic\PassEncryption.class
 model\Shape.class
 view\LoginPanel.class
 view\LoginPanel$1.class

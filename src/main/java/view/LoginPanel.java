@@ -2,6 +2,7 @@ package view;
 
 import DAO.JDBCmanager;
 import DAO.IOmanager;
+import logic.PassEncryption;
 import model.User;
 
 import javax.swing.*;
@@ -56,9 +57,13 @@ public class LoginPanel extends JFrame{
                     JOptionPane.showMessageDialog (null, "username and password field must be filled");
                 else {
                     IOmanager.open();
-                    if(IOmanager.getUser (uNameTextField.getText ())!=null) {
-                        IOmanager.addUser (new User (uNameTextField.getText (),passwordField.getText ()));
-                        JOptionPane.showMessageDialog (null,"registered successfully");
+                    if(IOmanager.getUser (uNameTextField.getText ())==null) {
+                        try {
+                            IOmanager.addUser(new User(uNameTextField.getText(), PassEncryption.getDigest(passwordField.getText())));
+                            JOptionPane.showMessageDialog(null, "registered successfully");
+                        }catch (Exception ed){
+
+                        }
                     }
                     else JOptionPane.showMessageDialog (null,"this username is not available");
                 }
@@ -81,10 +86,15 @@ public class LoginPanel extends JFrame{
                 else {
                     IOmanager.open();
                     if(IOmanager.getUser (uNameTextField.getText ())!=null) {
-                        JOptionPane.showMessageDialog (null, "you're login successfully");
-                        sysUser=IOmanager.getUser (uNameTextField.getText ());
+                        try {
+                            if (IOmanager.getUser(uNameTextField.getText()).getPassword().equals(PassEncryption.getDigest(passwordField.getText()))) {
+                                JOptionPane.showMessageDialog(null, "you're login successfully");
+                                sysUser = IOmanager.getUser(uNameTextField.getText());
+                                new MainFrame(loginPanel).drawPanel.setShapes(JDBCmanager.getShapes(sysUser));
+                            }
+                        }catch (Exception es){
 
-                        new MainFrame (loginPanel).drawPanel.setShapes (JDBCmanager.getShapes (sysUser));
+                        }
                     }
                     else JOptionPane.showMessageDialog (null,"username or password is wrong");
                 }
